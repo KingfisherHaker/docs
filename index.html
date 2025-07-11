@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberkingfisher Docs</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      /* 修改背景为渐变效果 */
+      background: linear-gradient(to top, #241e6e 0%, #151141, #121212 40%, #121212 100%);
+      color: #fff;
+      line-height: 1.6;
+      transition: background 0.3s ease;
+    }
+
+    body.light-mode {
+      background: linear-gradient(to top, #f5f5f5 0%, #e0e0e0, #ffffff 40%, #ffffff 100%);
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    body.light-mode nav a {
+      color: #666;
+    }
+
+    body.light-mode nav a:hover {
+      color: #333;
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      text-align: left;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #b3b3ff;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #4a6ef3;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #3a56d3;
+    }
+
+    .btn-secondary {
+      background-color: #333;
+      color: #ccc;
+    }
+
+    .btn-secondary:hover {
+      background-color: #444;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .feature-card {
+      background-color: #1c1c1c;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      color: #fff;
+      /* 设置卡片内文字颜色为白色 */
+      text-decoration: none;
+      /* 移除下划线 */
+    }
+
+    body.light-mode .feature-card {
+      background-color: #fff;
+      color: #333;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode .feature-card:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 2rem;
+      color: #999;
+      border-top: 1px solid #222;
+    }
+
+    body.light-mode footer {
+      color: #666;
+      border-top: 1px solid #ccc;
+    }
+
+    /* 主题切换开关样式 */
+    .theme-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部导航 -->
+  <header>
+    <div class="logo">Cyberkingfisher Docs</div>
+    <nav>
+      <a href="https://kingfisherhaker.github.io/">Home</a>
+      <a href="#">Docs</a>
+      <a href="https://kingfisherhaker.github.io/blue/">Spoof</a>
+    </nav>
+    <!-- 主题切换开关 -->
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+  </header>
+
+  <!--  hero 区域 -->
+  <section class="hero">
+    <h1>Cyberkingfisher Docs</h1>
+    <h2>Welcome to Cyberkingfisher Docs</h2>
+    <p>Reference:https://docs.hotpe.top/</p>
+    <p>.</p>
+    <div class="btn-group">
+      <a href="https://space.bilibili.com/3546583484336359" class="btn btn-primary">Bilibili</a>
+      <a href="https://github.com/KingfisherHaker/docs" class="btn btn-secondary">Github</a>
+    </div>
+    <div class="features">
+      <a href="https://kingfisherhaker.github.io/win11-streamline" class="feature-card">
+        <h3>Windows11精简版</h3>
+        <p>专为追求高效、轻量化体验的用户设计，通过移除非必要组件优化系统性能，适合老旧设备或特定场景使用。</p>
+      </a>
+      <a href="https://kingfisherhaker.github.io/win-for-mac" class="feature-card">
+        <h3>Windows仿macOS Tahoe主题</h3>
+        <p>欢迎来到Cyberkingfisher docs > macOS 主题，99%仿真</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>kingfisherhaker.github.io</p>
+    <p>Copyright © 2025-Cyberkingfisher</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('change', function () {
+      if (this.checked) {
+        body.classList.add('light-mode');
+      } else {
+        body.classList.remove('light-mode');
+      }
+    });
+  </script>
+</body>
+
+</html>
