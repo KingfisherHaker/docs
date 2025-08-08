@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberkingfisher Docs</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* 全局文字黑色阴影 */
+    }
+
+    body {
+      background: #121212 url('background.png') no-repeat center top; /* 设置背景图片 */
+      background-size: cover; /* 背景图片覆盖整个区域 */
+      color: #fff;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 底部蓝色渐变 */
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(to top, #1a5fb4, transparent);
+      z-index: -1;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* 强化logo阴影 */
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: color 0.3s ease;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex: 1;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #b3b3ff;
+      position: relative;
+      z-index: 10;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9); /* 标题强化阴影 */
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 10;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .btn-primary {
+      background-color: #4a6ef3;
+      color: #fff;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #3a56d3;
+    }
+
+    .btn-secondary {
+      background-color: #333;
+      color: #ccc;
+    }
+
+    .btn-secondary:hover {
+      background-color: #444;
+    }
+
+    .btn-donate {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .btn-donate:hover {
+      background-color: #c0392b;
+    }
+
+    .features-container {
+      position: relative;
+      z-index: 2; /* 确保卡片在背景上方 */
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr; /* 单列布局 */
+      gap: 2rem;
+      max-width: 1000px; /* 加宽卡片容器 */
+      margin: 0 auto 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .feature-card {
+      background-color: #1c1c1c;
+      padding: 2rem; /* 增加内边距 */
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* 第一张卡片大部分在背景上 */
+    .features .feature-card:first-child {
+      margin-top: 100px;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem; /* 稍大标题 */
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .feature-card p {
+      font-size: 1.1rem; /* 稍大内容 */
+      line-height: 1.7;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 2rem;
+      color: #999;
+      border-top: 1px solid #222;
+      margin-top: auto;
+      position: relative;
+      z-index: 10;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .theme-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(26px);
+    }
+
+    .donate-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .donate-modal.active {
+      opacity: 1;
+    }
+
+    .donate-content {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .donate-modal.active .donate-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .macos-controls {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .macos-control {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      background-color: #ff5f58;
+    }
+
+    .minimize-btn {
+      background-color: #ffbd2e;
+    }
+
+    .maximize-btn {
+      background-color: #18c347;
+    }
+
+    .donate-title {
+      text-align: center;
+      margin: 1rem 0 2rem;
+      font-size: 1.2rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .donate-images {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .donate-image {
+      width: 45%;
+      border-radius: 8px;
+      max-height: 200px;
+      object-fit: contain;
+      background-color: #2a2a2a;
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Cyberkingfisher Docs</div>
+    <nav>
+      <a href="https://kingfisherhaker.github.io/">Home</a>
+      <a href="#">Docs</a>
+      <a href="https://kingfisherhaker.github.io/blue/">Spoof</a>
+    </nav>
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+  </header>
+  <section class="hero">
+    <h1>Cyberkingfisher Docs</h1>
+    <h2>Welcome to Cyberkingfisher Docs</h2>
+    <div class="btn-group">
+      <a href="https://space.bilibili.com/3546583484336359" class="btn btn-primary">Bilibili</a>
+      <a href="https://github.com/KingfisherHaker/docs" class="btn btn-secondary">Github</a>
+      <button id="donate-btn" class="btn btn-donate">捐赠</button>
+    </div>
+    
+    <div class="features-container">
+      <div class="features">
+        <a href="https://kingfisherhaker.github.io/win11-streamline" class="feature-card">
+          <h3>Windows11精简版</h3>
+          <p>专为追求高效、轻量化体验的用户设计，通过移除非必要组件优化系统性能，适合老旧设备或特定场景使用。</p>
+        </a>
+        <a href="https://kingfisherhaker.github.io/win-for-mac" class="feature-card">
+          <h3>Windows仿macOS Tahoe主题</h3>
+          <p>欢迎来到Cyberkingfisher docs > macOS 主题，99%仿真</p>
+        </a>
+        <a href="https://kingfisherhaker.github.io/pe" class="feature-card">
+          <h3>Windows11-PE</h3>
+          <p>有互联网，有声卡，有输入法、有浏览器，空间又小又强大的WinPE</p>
+        </a>
+      </div>
+    </div>
+
+    <div id="donate-modal" class="donate-modal">
+      <div class="donate-content">
+        <div class="macos-controls">
+          <div class="macos-control close-btn" id="modal-close"></div>
+          <div class="macos-control minimize-btn"></div>
+          <div class="macos-control maximize-btn"></div>
+        </div>
+        <div class="donate-title">如果喜欢，请尝试用钱打我撒（bushi</div>
+        <div class="donate-images">
+          <img src="wechat.png" alt="微信支付" class="donate-image">
+          <img src="Alipay.png" alt="支付宝支付" class="donate-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>kingfisherhaker.github.io</p>
+    <p>Copyright © 2025-Cyberkingfisher</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const donateBtn = document.getElementById('donate-btn');
+    const donateModal = document.getElementById('donate-modal');
+    const modalClose = document.getElementById('modal-close');
+    
+    // 默认保持深色模式
+    themeToggle.checked = false;
+    
+    themeToggle.addEventListener('change', function () {
+      if (this.checked) {
+        body.style.background = '#f5f5f5';
+        body.style.color = '#333';
+        // 调整亮色模式下的文字阴影为深灰色
+        document.querySelectorAll('*').forEach(el => {
+          el.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.3)';
+        });
+        document.querySelectorAll('nav a').forEach(link => {
+          link.style.color = '#666';
+          link.addEventListener('mouseover', () => link.style.color = '#333');
+          link.addEventListener('mouseout', () => link.style.color = '#666');
+        });
+        document.querySelectorAll('.feature-card').forEach(card => {
+          card.style.backgroundColor = '#fff';
+          card.style.color = '#333';
+          card.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+        });
+        footer.style.color = '#666';
+        footer.style.borderTop = '1px solid #ccc';
+      } else {
+        // 恢复深色模式背景图片
+        body.style.background = '#121212 url("background.png") no-repeat center top';
+        body.style.backgroundSize = 'cover';
+        body.style.color = '#fff';
+        // 恢复深色模式下的文字阴影
+        document.querySelectorAll('*').forEach(el => {
+          el.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.8)';
+        });
+        document.querySelectorAll('h1, h2').forEach(title => {
+          title.style.textShadow = '0 3px 6px rgba(0, 0, 0, 0.9)';
+        });
+        document.querySelectorAll('nav a').forEach(link => {
+          link.style.color = '#ccc';
+          link.addEventListener('mouseover', () => link.style.color = '#fff');
+          link.addEventListener('mouseout', () => link.style.color = '#ccc');
+        });
+        document.querySelectorAll('.feature-card').forEach(card => {
+          card.style.backgroundColor = '#1c1c1c';
+          card.style.color = '#fff';
+          card.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
+        });
+        footer.style.color = '#999';
+        footer.style.borderTop = '1px solid #222';
+      }
+    });
+    
+    donateBtn.addEventListener('click', function() {
+      donateModal.style.display = 'flex';
+      setTimeout(() => {
+        donateModal.classList.add('active');
+      }, 10);
+    });
+
+    function closeModal() {
+      donateModal.classList.remove('active');
+      setTimeout(() => {
+        donateModal.style.display = 'none';
+      }, 300);
+    }
+
+    modalClose.addEventListener('click', closeModal);
+
+    window.addEventListener('click', function(event) {
+      if (event.target === donateModal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+
+</html>
